@@ -5,6 +5,7 @@ import getAuthUser, { getUserFromToken } from "@/helpers/authUser";
 import { logoutUser } from "@/redux/auth/authSlice";
 import { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux";
+import LoggedInButton from "./LoggedInButton";
 
 function Button() {
   const [ClickLogin,setClickLogin] = useState(false);
@@ -36,11 +37,7 @@ function Button() {
       {!user?<div className="flex gap-2 p-2">
         <button className=" bg-green-600 text-white shadow-lg  rounded-sm px-3 py-1 ml-2" onClick={()=>{setClickLogin(true); setButtonClick(true);}} >Login</button>
         <button className=" bg-white text-black shadow-lg rounded-sm px-3 py-1 mr-2"  onClick={()=>{setClickRegister(true); setButtonClick(true);}} >Register</button>
-      </div>:<div>Hello {user.name}
-        <div className="flex justify-center">
-        <button className=" bg-red-600 hover:bg-red-500 text-white shadow-lg rounded-sm px-3 py-1 ml-2" onClick={()=>dispatch(logoutUser())} >LogOut</button>
-        </div>
-      </div>}
+      </div>:<LoggedInButton user={user} />}
       {ButtonClick&&(
         <div onClick={()=>setButtonClick(false)} className="fixed top-0 left-0 w-full backdrop-blur-sm h-full bg-blue-dark bg-opacity-50 flex items-center justify-center z-50">
         <div onClick={(e) => e.stopPropagation()} className="bg-white  justify-center p-10 shadow-xl w-[400px]">
