@@ -28,7 +28,7 @@ function Cart() {
     <div className='px-10 lg:px-32 py-16 md:flex'>
       <div className='md:mr-4 md:w-2/3'>
         {items.map((item)=>(
-        <div key={item.id} onClick={()=>router.push(`${Product_Route}/${item.id}`)} className='py-6 flex hover:rounded-md hover:bg-slate-200 cursor-pointer border-b-2'>
+        <div key={item.id} onClick={()=>router.push(`${Product_Route}/${item.id}`)} className='py-6 flex hover:rounded-md hover:bg-slate-200 dark:hover:bg-slate-900 cursor-pointer border-b-2'>
           <div className="w-1/3">
             <div className="flex h-auto w-auto justify-center py-2">
               {item.imgUrl? (
@@ -50,7 +50,7 @@ function Cart() {
               <p>{item.brand}</p>
               <h1 className="font-semibold text-lg">{item.name}</h1>
             </div>
-            <div className="flex  mb-4 items-end">
+            <div className="sm:flex  mb-4 items-end">
               <h1 className="font-semibold mr-5 text-lg line-through">Rs.{item.price*item.quantity}</h1>
               <h1 className="font-semibold text-2xl text-red-800">Rs. {Math.floor(0.9*item.price*item.quantity)}</h1>
             </div>
@@ -64,7 +64,7 @@ function Cart() {
           <button className="text-sky-800 mb-5 underline" onClick={()=>dispatch(clearCart())}>Clear Cart</button>     
         </div>  
       </div>
-      <div className='md:w-1/3'>
+      <div className='md:w-1/3 dark:text-black'>
         <div className="bg-white px-6 pt-8 pb-12">
           <h1 className="font-semibold text-xl pb-10">Summary</h1>
           <div className="flex justify-between pb-2"> 
