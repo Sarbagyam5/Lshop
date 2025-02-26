@@ -1,19 +1,25 @@
 'use client'
 import { logoutUser } from '@/redux/auth/authSlice';
 import Image from 'next/image';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { GiShoppingCart } from "react-icons/gi";
 import { useDispatch } from 'react-redux';
 import { FaRegHeart } from "react-icons/fa";
 import { FaRegEdit } from "react-icons/fa";
 
-
-
 function LoggedInButton({user}) {
 
   const [prflClicked,setPrflClicked] = useState(false);
   const dispatch = useDispatch();
-  console.log(user)
+  useEffect(() => {
+      if (!prflClicked) {
+        document.body.style.overflow = "auto";
+      }
+      else{
+        document.body.style.overflow = "hidden";
+      }
+    }, [prflClicked]);
+
   return (  
     <div>
       <Image alt='ProfilePicture' onClick={()=>setPrflClicked(prev => !prev)} className={`${prflClicked&& "border-2 border-white"}`} src={user.profileImageUrl} width={35} height={35}/>
